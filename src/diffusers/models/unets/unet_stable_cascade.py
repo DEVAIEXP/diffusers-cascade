@@ -68,7 +68,7 @@ class SDCascadeResBlock(nn.Module):
             nn.Dropout(dropout),
             nn.Linear(c * 4, c),
         )
-
+    @torch.cuda.amp.autocast(dtype=torch.float32)
     def forward(self, x, x_skip=None):
         x_res = x
         x = self.norm(self.depthwise(x))
